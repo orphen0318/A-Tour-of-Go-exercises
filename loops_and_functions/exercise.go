@@ -21,12 +21,13 @@ func both(i float64) (float64, float64) {
 }
 
 func main() {
-	var num float64
+	var num float64 = 5
 
 	if len(os.Args[1:]) > 0 {
-		num, _ = strconv.ParseFloat(os.Args[1], 64)
-	} else {
-		num = 5
+		arg, _ := strconv.ParseFloat(os.Args[1], 64)
+		if arg >= 0 {
+			num = arg
+		}
 	}
 
 	Println(both(num))
