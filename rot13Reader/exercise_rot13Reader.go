@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"os"
 	"strings"
@@ -24,7 +25,16 @@ func (rot13r *rot13Reader) Read(rbyte []byte) (int, error) {
 }
 
 func main() {
+	// func NewReader(s string) *Reader, in package "strings"
+	// func (r *Reader) Read(b []byte) (n int, err error)
+
 	s := strings.NewReader("Lbh penpxrq gur pbqr!")
 	r := rot13Reader{s}
-	io.Copy(os.Stdout, &r)
+	n, err := io.Copy(os.Stdout, &r)
+
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Printf("\n%v\n", n)
+	}
 }
